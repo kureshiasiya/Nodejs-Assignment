@@ -57,12 +57,10 @@ app.post("/addSchool", (req, res) => {
       return res.status(500).json({ error: "Failed to add school" });
     }
     // Respond with success message and the ID of the newly added school
-    res
-      .status(201)
-      .json({
-        message: "School added successfully",
-        schoolId: result.insertId,
-      });
+    res.status(201).json({
+      message: "School added successfully",
+      schoolId: result.insertId,
+    });
   });
 });
 
@@ -78,6 +76,7 @@ app.get("/listSchools", (req, res) => {
   const query = "SELECT * FROM schools";
   db.query(query, (err, results) => {
     if (err) {
+      console.log(err);
       return res.status(500).json({ error: "Failed to fetch schools" });
     }
 
